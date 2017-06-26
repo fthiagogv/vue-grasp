@@ -8,7 +8,6 @@
 
     div.row.gutter
       DrawGrasp(:grasp="grasp")
-  </div>
 </template>
 
 <script>

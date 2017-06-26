@@ -6,7 +6,7 @@
 <script>
 export default {
   props: ['contentItem'],
-  name: 'Content',
+  name: 'ContentDraw',
   data () {
     return {
       contentWidth: '',
@@ -29,7 +29,7 @@ export default {
         this.$nextTick(() => {
           // console.log('here')
           this.contentWidth = this.contentItem.widthBin + 'px'
-          this.contentHeigth = this.contentItem.lenghtBin + 'px'
+          this.contentHeigth = this.contentItem.lengthBin + 'px'
           // console.log(this.contentWidth)
         })
       }

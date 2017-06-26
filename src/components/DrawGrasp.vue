@@ -11,17 +11,17 @@
     div(v-bind:style="setupCSS", style="border: solid 1px red;")
       div.row.full-width(v-for="(line, index) of lines")
         div(v-for="(item, index) of line")
-          Content(:contentItem="item" style="border: solid 1px black")
+          ContentDraw(:contentItem="item" style="border: solid 1px black")
 
 
 </template>
 
 <script>
-import Content from './Content'
+import ContentDraw from './ContentDraw'
 export default {
   props: ['grasp'],
   name: 'DrawGrasp',
-  components: {Content},
+  components: {ContentDraw},
   data () {
     return {
       setup: '',
@@ -55,8 +55,8 @@ export default {
     changeCss: function (item, idColor) {
       console.log(this.$refs.teste)
       return {
-        width: '10x',
-        height: '10px',
+        width: '100x',
+        height: '100px',
         borderRadius: 'solid 1px black'
       }
     },

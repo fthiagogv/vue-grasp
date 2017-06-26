@@ -36,7 +36,7 @@ export default {
       }
 
       objects.push({
-        lenghtBin: object[0],
+        lengthBin: object[0],
         widthBin: object[1],
         demand: object[2],
         maxOcorrence: object[3],

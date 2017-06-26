@@ -11,9 +11,9 @@
 
         div.card-content
           .row
-              button.primary.full-width(@click="executarGrasp") Run
+              button.primary.full-width(@click="executarGrasp", v-bind:readonly="loading") {{ loadingText }}
           div.row
-              FileUpload(@readFile="readingFile")
+              FileUpload(@readFile="readingFile" )
 
         div.card-content
           div.stacked-label
@@ -34,7 +34,9 @@ export default {
       url: 'http://localhost:9898',
       data: '',
       text: '',
-      grasp: ''
+      grasp: '',
+      loading: false,
+      loadingText: 'Run'
     }
   },
   methods: {
@@ -60,6 +62,7 @@ export default {
       .catch(e => {
         this.loading = false
         this.loadingText = 'Run'
+        console.log(e)
       })
     }
   }
