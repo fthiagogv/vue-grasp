@@ -19,29 +19,33 @@ export default {
     var lineSetup = arrayData[0]
     var _objects = arrayData.slice(1)
     var setup = {
-      lengthBin: lineSetup[0],
-      widthBin: lineSetup[1],
-      amount: lineSetup[2],
-      isGuillotined: lineSetup[3],
-      isRotated: lineSetup[4],
-      haveDemand: lineSetup[5],
-      haveRestrictOcorrence: lineSetup[6],
-      haveItemValue: lineSetup[7]
+      lengthBin: parseInt(lineSetup[0]),
+      widthBin: parseInt(lineSetup[1]),
+      amount: parseInt(lineSetup[2]),
+      isGuillotined: Boolean(lineSetup[3]),
+      isRotated: Boolean(lineSetup[4]),
+      haveDemand: Boolean(lineSetup[5]),
+      haveRestrictOcorrence: Boolean(lineSetup[6]),
+      haveItemValue: Boolean(lineSetup[7])
     }
 
     var objects = []
+    let id = 0
     for (let object of _objects) {
       if (object[0] === undefined || object[1] === undefined) {
         continue
       }
 
       objects.push({
-        lengthBin: object[0],
-        widthBin: object[1],
-        demand: object[2],
-        maxOcorrence: object[3],
-        value: object[4]
+        id: id,
+        lengthBin: parseInt(object[0]),
+        widthBin: parseInt(object[1]),
+        demand: Boolean(object[2]),
+        maxOcorrence: Boolean(object[3]),
+        value: Boolean(object[4])
       })
+
+      id++
     }
 
     return Object.assign({}, {

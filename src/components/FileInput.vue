@@ -1,24 +1,23 @@
 <template lang="jade">
-  div#fileInput
-   div.row
-    div.col-auto
-      div.card
-        div.card-title Setup
-        div.card-content
-          div.stacked-label
-            input(v-model="url", placeholder="Insert the server URL")
-            label Host URL
+  div#fileInput.layout-padding.full-width
+    div.row.gutter
+      div.col-auto
+        button.primary(@click="executarGrasp", v-bind:readonly="loading") {{ loadingText }}
+      div.col-auto
+        div.stacked-label
+          input(v-model="url", placeholder="Insert the server URL")
+          label Host URL
+      div.col-auto
+        div.stacked-label
+          input(v-model="iterations", placeholder="Insert the number of iterations")
+          label Number of iterations
 
-        div.card-content
-          .row
-              button.primary.full-width(@click="executarGrasp", v-bind:readonly="loading") {{ loadingText }}
-          div.row
-              FileUpload(@readFile="readingFile" )
-
-        div.card-content
-          div.stacked-label
-            textarea.full-width.no-border(v-model="text", readonly, cols="30", rows="10")
-            label Text Json
+    div.row.gutter
+      div
+        FileUpload(@readFile="readingFile" )
+        div.stacked-label
+          textarea.full-width.no-border(v-model="text", readonly, cols="30", rows="10")
+          label Text Json
 
 </template>
 
@@ -36,13 +35,15 @@ export default {
       text: '',
       grasp: '',
       loading: false,
-      loadingText: 'Run'
+      loadingText: 'Run',
+      iterations: 1000000
     }
   },
   methods: {
     readingFile (text) {
       text = dataFromTextFile.getArrayData(text)
       this.data = dataFromTextFile.getJsonData(text)
+      this.data.setup.iterations = this.iterations
       this.text = JSON.stringify(this.data, null, 4)
     },
     executarGrasp () {

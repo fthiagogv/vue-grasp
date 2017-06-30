@@ -2,26 +2,23 @@
   div#drawGrasp.full-width
     div.row.justify-center
       div.col-xs-auto.text-center.spacing
-        b Timespent: &nbsp;
-        | {{ timespent }}
-      div.col-xs-auto.text-center.spacing
-        b Items Remaining which are not allocated: &nbsp;
-        | {{ itemsRemaining }}
+        b Legends:
+        | Red: Total of the Space || Green-teal colors: Slices of cuts || Brown-grey colors: objects
 
-    div(v-bind:style="setupCSS", style="border: solid 1px red;")
+    div(v-bind:style="setupCSS", style="background: red;")
       div.row.full-width(v-for="(line, index) of lines")
-        div(v-for="(item, index) of line")
-          ContentDraw(:contentItem="item" style="border: solid 1px black")
+        LineDraw(:line="line")
+
 
 
 </template>
 
 <script>
-import ContentDraw from './ContentDraw'
+import LineDraw from './LineDraw'
 export default {
-  props: ['grasp'],
+  props: ['drawData'],
   name: 'DrawGrasp',
-  components: {ContentDraw},
+  components: {LineDraw},
   data () {
     return {
       setup: '',
@@ -32,20 +29,20 @@ export default {
     }
   },
   methods: {
-    updateGrasp () {
-      if (this.grasp !== undefined && this.grasp !== '' && this.grasp !== ' ') {
+    updateDraw () {
+      if (this.drawData !== undefined && this.drawData !== '' && this.drawData !== ' ') {
         this.$nextTick(() => {
-          this.setup = this.grasp.data.setup
-          this.lines = this.grasp.data.items
-          this.itemsRemaining = this.grasp.data.itemsRemaining
-          this.timespent = this.grasp.data.timespent
+          this.setup = this.drawData.setup
+          this.lines = this.drawData.slices
+          this.itemsRemaining = this.drawData.itemsRemaining
+          this.timespent = this.drawData.timespent
         })
       }
     }
   },
   watch: {
-    grasp () {
-      this.updateGrasp()
+    drawData () {
+      this.updateDraw()
     }
   },
   computed: {
@@ -53,7 +50,7 @@ export default {
       return a
     },
     changeCss: function (item, idColor) {
-      console.log(this.$refs.teste)
+      // console.log(this.$refs.teste)
       return {
         width: '100x',
         height: '100px',

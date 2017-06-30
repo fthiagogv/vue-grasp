@@ -3,7 +3,7 @@
     div.card
       div.card-title Formation of the File inputted
       div.card-content
-        textarea.full-width.no-border(v-model="text", cols="130", rows="20", readonly)
+        pre {{ text }}
 
 </template>
 
@@ -47,7 +47,7 @@ export default {
          r_i: maximum number of occurrences of the item i in a pattern
          v_i: value of the item i
 
-         OBS.: Parâmetros com valores iguais a 0, significa que não devem ser considerados
+         OBS.: Parameters with values equal 0 (zero) should not be considered
       `
     }
   }
