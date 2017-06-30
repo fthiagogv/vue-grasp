@@ -1,5 +1,10 @@
 # Quasar App
 
+## Pre-requirements
+
+* [Nodejs](https://nodejs.org/en/)
+* [npm](https://www.npmjs.com/)
+
 > A Quasar project
 
 ## Build Setup
